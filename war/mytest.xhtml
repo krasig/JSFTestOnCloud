@@ -1,0 +1,65 @@
+<!DOCTYPE html 
+         PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+<h:head id="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Loan calculator</title>
+	<meta name="description"
+		content="Loan calculator presenting capabilities of Google App Engine and JSF" />
+	<meta name="keywords"
+		content="loan calculator, Google App Engine, GAE, JSF" />
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css"
+		media="screen, projection"></link>
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css"
+		media="print"></link>
+	<!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"></link><![endif]-->
+	<style type="text/css">
+.center {
+	text-align: center;
+}
+</style>
+</h:head>
+<h:body id="body_">
+	<div class="container">
+	
+	
+		<h2>KrasiG(oogle)JSF Advetures</h2>
+		<hr />
+		<h:panelGroup layout="block" styleClass="span-7">
+		  &nbsp;
+		</h:panelGroup>
+	
+	<!--<h:panelGroup layout="block" styleClass="span-10 append-7 last">
+		--><h:form id="loanForm">
+		<fieldset>aaaaaaaa</fieldset>
+	<fieldset>
+			<h:panelGrid columns="6" styleClass="span-2" >		
+					<h:outputLabel value="Месец:" for="mont" />
+					<h:selectOneMenu value="#{firstBean.selectedMont}" id="mont">
+						<f:selectItems value="#{firstBean.monts}"/>
+					</h:selectOneMenu>
+					<h:outputLabel value="Ден(начло):"/>
+					<h:inputText value="4" maxlength="2" size="2"/>
+					<h:outputLabel value="Ден(край):"/>
+					<h:inputText value="4" maxlength="2" size="2"/>
+			</h:panelGrid>	
+				<h:dataTable value="#{firstBean.mylist}" var="myvar" id="mytable">
+					<h:column>#{myvar}</h:column>
+				</h:dataTable>
+				<h:commandButton value="aaa" action="#{firstBean.actionAdd}" />
+				<h:inputText value="#{firstBean.str}" id="mystr" />
+				<h:commandButton value="ajax" action="#{firstBean.actionAdd}">
+					<f:ajax execute="mystr" render="mytable" />
+				</h:commandButton>
+		</fieldset>	
+		</h:form>
+	<!--</h:panelGroup>
+	
+	--></div>
+</h:body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html 
+         PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html" />
+<h:head id="head">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Loan calculator</title>
+	<meta name="description" content="Loan calculator presenting capabilities of Google App Engine and JSF" />
+    <meta name="keywords" content="loan calculator, Google App Engine, GAE, JSF" />
+	<link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"></link>
+	<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"></link>
+	<!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"></link><![endif]-->
+	<style type="text/css">.center {text-align: center;}</style>
+</h:head>
+<h:body id="body">
+	<div class="container">
+		<h1>Loan calculator</h1>
+		<hr />
+		<h:panelGroup layout="block" styleClass="span-7">
+		  &nbsp;
+		</h:panelGroup>
+		
+		<h:panelGroup layout="block" styleClass="span-9 append-8 last">
+			<h:panelGroup layout="block" styleClass="span-9 box last">
+				<h:form id="loanForm">
+				    <fieldset>
+						<p>
+							<h:outputLabel for="loanAmount" value="Loan amount" />
+							<h:inputText id="loanAmount" value="#{LoanBean.amount}"
+							     label="Loan amount" required="true" styleClass="text">
+							    <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+							    <f:validateDoubleRange minimum = "0" maximum = "99999999" />
+								<f:validator validatorId="FieldValidator" />
+								<f:attribute name="fieldName" value="Loan amount" />
+							</h:inputText>
+						</p>
+						<p>
+							<h:outputLabel for="interestRate" value="Interest rate (%)" />
+							<h:inputText id="interestRate" value="#{LoanBean.interestRate}"
+							     label="Interest rate" required="true" styleClass="text">
+							    <f:validateDoubleRange minimum = "0" maximum = "9999" />
+							    <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+								<f:validator validatorId="FieldValidator" />
+								<f:attribute name="fieldName" value="Interest rate" />
+							</h:inputText>
+						</p>
+						<p>
+							<h:outputLabel for="noMonths" value="Number of months" />
+							<h:inputText id="noMonths" value="#{LoanBean.noMonths}"
+							     label="Number of months" required="true" styleClass="text">
+							    <f:validateDoubleRange minimum = "0" maximum = "9999" />
+							    <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+								<f:validator validatorId="FieldValidator" />
+								<f:attribute name="fieldName" value="Number of months" />
+							</h:inputText>
+						</p>
+						<h:commandButton action="#{LoanBean.calculate}" value="Calculate" />
+					</fieldset>
+				</h:form>
+			</h:panelGroup>
+
+            <h:panelGroup layout="block" styleClass="span-9 box error last"
+                rendered="${!empty facesContext.maximumSeverity}">
+                <h:messages />
+            </h:panelGroup>
+            
+      		
+      		<h:panelGroup layout="block" styleClass="span-9 box success last"
+      		    rendered="${LoanBean.calculated == true}">
+      			<fieldset>
+				    <p>
+						<h:outputLabel for="totalCost" value="Total interest" />
+						<h:inputText id="totalCost" value="${LoanBean.totalInterest}"
+						      styleClass="text" disabled="true">
+						  <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+						</h:inputText>
+					</p>
+					<p>
+						<h:outputLabel value="Total payment" />
+						<h:inputText id="totalAmount" value="${LoanBean.totalPayment}"
+						      styleClass="text" disabled="true">
+						  <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+						</h:inputText>
+					</p>
+					<p>
+                        <h:outputLabel for="monthlyPayment" value="Monthly payment" />
+                        <h:inputText id="monthlyPayment" value="${LoanBean.monthlyPayment}"
+                              styleClass="text" disabled="true">
+                            <f:convertNumber maxFractionDigits="2" groupingUsed="false" />
+                        </h:inputText>
+                    </p>
+				</fieldset>
+			</h:panelGroup>
+		</h:panelGroup>
+		<div class="prepend-8 span-8 last center">
+			<h:outputText styleClass="note"
+			 value="This Google App Engine application is using JSF  2.0"></h:outputText>
+		</div>
+		<div class="prepend-5 span-14 last center">
+        <span class="note">Copyright © 2010 <a href="http://whileitcompiles.com" title="While it compiles" target="_blank">While it compiles</a> 
+            under the <a href="http://www.apache.org/licenses/LICENSE-2.0" title="Apache License, Version 2.0" rel="nofollow" target="_blank">Apache License, Version 2.0</a>.</span>
+        </div>
+	</div>
+	<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15405706-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</h:body>
+</html>

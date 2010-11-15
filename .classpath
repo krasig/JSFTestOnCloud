@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="com.google.appengine.eclipse.core.GAE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/el-api-1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/el-impl-1.1.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jsf-api.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/jsf-impl.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xalan.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xml-apis.jar"/>
+	<classpathentry kind="lib" path="war/WEB-INF/lib/xsltc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="war/WEB-INF/classes"/>
+</classpath>

@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+	</application>
+	
+	<managed-bean>
+		<managed-bean-name>LoanBean</managed-bean-name>
+		<managed-bean-class>com.whileitcompiles.tutorial.gae.loancalculator.beans.LoanBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+            <property-name>amount</property-name>
+            <value>5000</value>
+        </managed-property>
+        <managed-property>
+            <property-name>interestRate</property-name>
+            <value>10</value>
+        </managed-property>
+        <managed-property>
+            <property-name>noMonths</property-name>
+            <value>36</value>
+        </managed-property>
+        <managed-property>
+            <property-name>calculated</property-name>
+            <value>false</value>
+        </managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>firstBean</managed-bean-name>
+		<managed-bean-class>com.krasig.FirstBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+	</managed-bean>
+	
+	<navigation-rule>
+		<from-view-id>/welcome.jsf</from-view-id>
+		<navigation-case>
+			<from-outcome>calculate</from-outcome>
+			<to-view-id>/welcome.jsf</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<validator>
+        <validator-id>FieldValidator</validator-id>
+        <validator-class>com.whileitcompiles.tutorial.gae.loancalculator.validators.FieldValidator</validator-class>
+    </validator>
+</faces-config>
