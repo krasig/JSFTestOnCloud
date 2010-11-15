@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class FirstBean implements Serializable{
 
 	/**
-	 * 
+	 * proba
 	 */
 	private static final long serialVersionUID = 8931228193046062395L;
 
