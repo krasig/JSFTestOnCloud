@@ -1,0 +1,13 @@
+diff --git src/com/krasig/FirstBean.java src/com/krasig/FirstBean.java
+index eb0cd2d..1572e0f 100644
+--- src/com/krasig/FirstBean.java
++++ src/com/krasig/FirstBean.java
+@@ -6,7 +6,7 @@
+ public class FirstBean implements Serializable{
+ 
+ 	/**
+-	 * proba
++	 * proba 2
+ 	 */
+ 	private static final long serialVersionUID = 8931228193046062395L;
+ 

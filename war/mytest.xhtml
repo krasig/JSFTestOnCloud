@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <f:view contentType="text/html" />
 <h:head id="head">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -30,34 +31,126 @@
 	
 		<h2>KrasiG(oogle)JSF Advetures</h2>
 		<hr />
-		<h:panelGroup layout="block" styleClass="span-7">
-		  &nbsp;
-		</h:panelGroup>
 		
-	
-	<!--<h:panelGroup layout="block" styleClass="span-10 append-7 last">
-		--><h:form id="loanForm">
-		<fieldset>aaaaaaaa</fieldset>
+		
+	<h:form id="loanForm" >
+			
 	<fieldset>
-			<h:panelGrid columns="6" styleClass="span-2" >		
+	<legend>Период</legend>
+			<h:panelGrid columns="8"  columnClasses="span-1 last,span-2 first,   span-2 last,span-2 first,   span-2 last ,span-2 last ,span-2 last ,span-10 first"  border="0"
+			style="bottom" >		
 					<h:outputLabel value="Месец:" for="mont" />
 					<h:selectOneMenu value="#{firstBean.selectedMont}" id="mont">
+						<f:ajax event="change" execute="@this" render="periodEnd" />
 						<f:selectItems value="#{firstBean.monts}"/>
 					</h:selectOneMenu>
-					<h:outputLabel value="Ден(начло):"/>
-					<h:inputText value="4" maxlength="2" size="2"/>
-					<h:outputLabel value="Ден(край):"/>
-					<h:inputText value="4" maxlength="2" size="2"/>
+					<h:outputLabel value="Ден(начло):" />
+					<h:inputText value="#{firstBean.periodStart}" maxlength="2" size="2"
+						readonly="true"/>
+					<h:outputLabel value="Ден(край):" />
+					<h:inputText value="#{firstBean.periodEnd}" maxlength="2" size="2" id="periodEnd"
+					readonly="true"/>
+					<h:outputLabel value="Старт км:" />
+					<h:inputText value="#{firstBean.startKm}" maxlength="6" size="6" id="startKM"
+					/>
 			</h:panelGrid>	
-				<h:dataTable value="#{firstBean.mylist}" var="myvar" id="mytable">
+	</fieldset>	
+
+	<fieldset>
+	<legend>Зареждане</legend>
+		<h:panelGrid columns="5" styleClass="span-10"  columnClasses="span-2 last,span-2 first, span-1 last,span-2 first, span 10" border="0"> 
+			<h:outputLabel value="Ден:"/>
+			<h:inputText maxlength="2" size="2" value="#{firstBean.fuelLoadDay}" id="f_day"/>
+			<h:outputLabel value="km:"/>
+			<h:inputText maxlength="6" size="6" value="#{firstBean.fuelLoadKm}" id="f_km"/>
+			<h:commandButton value="Add" style="width:80px" id="fuelAdd" action="#{firstBean.actionAddFuel}">
+				<f:ajax execute="f_day f_km" render="table_fuel" />
+			</h:commandButton>
+			
+			
+		</h:panelGrid>
+		
+		<h:dataTable value="#{firstBean.fuelLoads}" var="fuelVar" id="table_fuel" >
+				
+				<h:column>
+					<f:facet name="header">Ден2</f:facet>
+					<h:outputText value="#{fuelVar.day}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Km</f:facet>
+					<h:outputText value="#{fuelVar.km}"/>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{firstBean.actionDeleteFuel}" id="test">
+						<f:ajax render="@form"/>
+						<f:param name="parmDate" value="#{fuelVar.day}"/>
+						<h:graphicImage value="/img/delete.gif" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+	</fieldset>
+	<fieldset>
+	<legend>Пътуване</legend>
+		<h:panelGrid columns="7" styleClass="span-8"> 
+			<h:outputLabel value="Ден:"/>
+			<h:inputText value="#{firstBean.travelDay}" maxlength="2" size="2" id="t_day"/>
+			<h:outputLabel value="km:"/>
+			<h:inputText value="#{firstBean.travelKm}" maxlength="2" size="2" id="t_km"/>
+			<h:outputLabel value="Къде:"/>
+			<h:inputText value="#{firstBean.travelWhere}"  size="10" id="t_where"/>
+			<h:commandButton value="Add" style="width:80px" id="travelAdd" action="#{firstBean.actionAddTravel}">
+				<f:ajax execute="t_day t_km t_where" render="table_travel" />
+			</h:commandButton>
+
+
+		</h:panelGrid>
+					
+	<h:dataTable value="#{firstBean.travelers}" var="tvar" id="table_travel">
+			<h:column>
+					<f:facet name="header">Ден2</f:facet>
+					<h:outputText value="#{tvar.day}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Km</f:facet>
+					<h:outputText value="#{tvar.km}"/>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Where</f:facet>
+					<h:outputText value="#{tvar.where}"/>
+				</h:column>
+				<h:column>
+					<h:commandLink action="#{firstBean.actionDeleteTravel}" id="t_test">
+						<f:ajax render="@form"/>
+						<f:param name="parmDate" value="#{tvar.day}"/>
+						<h:graphicImage value="/img/delete.gif" />
+					</h:commandLink>
+
+				</h:column>
+			
+	</h:dataTable>				
+				
+				
+	</fieldset>
+	
+	<h:commandButton value="aaa" action="#{firstBean.actionAdd}" />
+	<h:inputText value="#{firstBean.str}" id="mystr" />
+				<h:commandButton value="Generate" action="#{firstBean.actionGenerate}">
+					<f:ajax execute="@form" render="mytable testRepeat" />
+				</h:commandButton>
+				<h:dataTable value="#{firstBean.roadList}" var="myvar" id="mytable">
 					<h:column>#{myvar}</h:column>
 				</h:dataTable>
-				<h:commandButton value="aaa" action="#{firstBean.actionAdd}" />
-				<h:inputText value="#{firstBean.str}" id="mystr" />
-				<h:commandButton value="ajax" action="#{firstBean.actionAdd}">
-					<f:ajax execute="mystr" render="mytable" />
-				</h:commandButton>
-		</fieldset>	
+				<h:panelGroup id="testRepeat">
+				<table>
+					<ui:repeat var="testUI" value="#{firstBean.roadList}">
+						<tr>
+							<td>
+								#{testUI}
+							</td>
+						</tr>
+					</ui:repeat>
+				</table>
+				</h:panelGroup>
 		</h:form>
 	<!--</h:panelGroup>
 	

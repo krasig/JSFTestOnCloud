@@ -42,20 +42,21 @@ public class TestSimple1 {
 		
 		//Месец и година за която ще генерираме
 		int year = 2010;
-		int month = 10;
+		int month = 11;
 			
 		// от колко км започва листа
-		long startKm = 130676;
+		long startKm = 131391;
 		
 		//Зарeждания + крайни километри
-		pokazania[15]= Long.valueOf(131083);
-		pokazania[29]= Long.valueOf(131391);
+		pokazania[9]= Long.valueOf(131790);
+		pokazania[30]= Long.valueOf(132208);
 		
 		// Твърди киломентри - например ходене до Пазарджик в почивен ден
-		tvardi[9] = 54;
-		tvardi[10] = 53;
+//		tvardi[9] = 54;
+		tvardi[12] = 1;
+		tvardi[26] = 1;
 		
-		//praznici[17]=1;
+		praznici[19]=1;
 		
 		
 		int first = startDay;
